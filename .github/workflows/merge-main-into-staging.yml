@@ -23,14 +23,11 @@ jobs:
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
 
-      - name: Fetch all branches
-        run: git fetch origin
-
       - name: Checkout staging branch
         run: git checkout staging-docker
 
       - name: Merge main into staging-docker
-        run: git merge origin/main --no-edit
+        run: git merge main 
 
       - name: Push changes
-        run: git push origin staging-docker
+        run: git push 
