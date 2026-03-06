@@ -36,8 +36,8 @@ jobs:
         if: failure()         
         uses: SimonScholz/google-chat-action@main
         with:
-          webhookUrl: '${{ secrets.GOOGLE_CHAT_WEBHOOK }}'
-          jobStatus: '${{ job.status }}'
+          webhookUrl: ${{ secrets.GOOGLE_CHAT_WEBHOOK }}
+          jobStatus: ${{ job.status }}
           title: Merge failed
           subtitle: Merge from main to staging-docker failed in repo
           
