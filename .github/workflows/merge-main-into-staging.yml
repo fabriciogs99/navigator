@@ -1,0 +1,33 @@
+name: Sync main to staging-docker
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  merge-main-to-staging:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set git identity
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+
+      - name: Fetch all branches
+        run: git fetch origin
+
+      - name: Checkout staging branch
+        run: git checkout staging-docker
+
+      - name: Merge main into staging-docker
+        run: git merge origin/main --no-edit
+
+      - name: Push changes
+        run: git push origin staging-docker
