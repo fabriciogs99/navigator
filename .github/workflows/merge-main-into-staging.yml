@@ -31,23 +31,7 @@ jobs:
 
       - name: Push changes
         run: git push 
-     
-      - name: Send Message to Google Chat
-
-        on:
-          pull_request:
-          push:
-            branches:
-
-          google-chat-action:
-            name: Google Chat GitHub Action
-            runs-on: ubuntu-latest
-
-            steps:
-              - name: Checkout
-                id: checkout
-                uses: actions/checkout@v4
-      
+           
       - name: Notify Google Chat
         if: failure()         
         uses: SimonScholz/google-chat-action@main
