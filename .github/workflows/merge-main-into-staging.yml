@@ -33,14 +33,11 @@ jobs:
         run: git push 
      
       - name: Notify Google Chat
-        if: failure() 
-        run: |
-          curl -X POST "${{ secrets.GOOGLE_CHAT_WEBHOOK }}" \
-          -H "Content-Type: application/json" \
-          -d '{
-          "text": "❌ GitHub Action failed: merge from main to staging-docker failed in repository. Use git pull to get the latest update. '${{ github.repository }}'."
-          }'
+        if: failure()         
         uses: SimonScholz/google-chat-action@main
         with:
           webhookUrl: '${{ secrets.GOOGLE_CHAT_WEBHOOK_URL }}'
           jobStatus: '${{ job.status }}'
+          title: Merge failed
+          subtitle: Merge from main to staging-docker failed in repo
+          
