@@ -37,9 +37,9 @@ jobs:
         run: |
           curl -X POST "${{ secrets.GOOGLE_CHAT_WEBHOOK }}" \
           -H "Content-Type: application/json" \
-        -d '{
+          -d '{
           "text": "❌ GitHub Action failed: merge from main to staging-docker failed in repository. Use git pull to get the latest update. '${{ github.repository }}'."
-        }'
+          }'
         uses: SimonScholz/google-chat-action@main
         with:
           webhookUrl: '${{ secrets.GOOGLE_CHAT_WEBHOOK_URL }}'
